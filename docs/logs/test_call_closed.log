@@ -1,0 +1,11 @@
+ROGFlowX16*CLI> dialplan reload
+Dialplan reloaded.
+   == Setting global variable 'RECEPTION_EXT' to 'PJSIP/101'
+    -- Executing [200@time-routing:1] NoOp("PJSIP/102-00000001", "--- Příchozí hovor: Kontrola pracovní doby ---") in new stack
+    -- Executing [200@time-routing:2] GotoIfTime("PJSIP/102-00000001", "08:00-16:00,mon-fri,*,*?open:closed") in new stack
+    -- Goto (time-routing,200,6)
+    -- Executing [200@time-routing:6] NoOp("PJSIP/102-00000001", "--- Stav: ZAVŘENO ---") in new stack
+    -- Executing [200@time-routing:7] Playback("PJSIP/102-00000001", "tt-monkeys") in new stack
+    -- <PJSIP/102-00000001> Playing 'tt-monkeys.gsm' (language 'en')
+    -- Executing [200@time-routing:8] Hangup("PJSIP/102-00000001", "") in new stack
+  == Spawn extension (time-routing, 200, 8) exited non-zero on 'PJSIP/102-00000001'
