@@ -1,5 +1,5 @@
 # VoIP Projekt — Téma #10: Časově podmíněné směrování v Asterisku
-*Autor: glu0025 (VŠB-TUO FEIK)*
+*Autor: glu0025 (VŠB-TUO FEI)*
 
 ## 1. Úvod
 Tento projekt se zabývá návrhem a implementací časově podmíněného směrování příchozích hovorů v IP telefonní ústředně Asterisk (Téma #10). Cílem je automaticky vyhodnocovat pracovní dobu organizace a podle aktuálního času směrovat hovory buď na dostupné pracoviště (recepci), nebo na automatickou hlášku mimo pracovní dobu.
