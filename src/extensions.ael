@@ -1,15 +1,18 @@
 context time-routing {
-    // Časově podmíněné směrování (Po-Pá 08:00-16:00) v AEL
     200 => {
-        NoOp(--- Příchozí hovor: Kontrola pracovní doby (AEL) ---);
+        NoOp(--- Kontrola casu, fronty a schranky (AEL) ---);
         ifTime(08:00-16:00|mon-fri|*|*) {
-            NoOp(--- Stav: OTEVŘENO ---);
-            Dial(PJSIP/101, 20);
-            Hangup();
+            NoOp(--- OTEVRENO: Vstup do fronty ---);
+            Queue(recepce_fronta,t,,,30);
+            // Pokud fronta vyprší, skočíme automaticky dál do schránky
+            goto closed;
         } else {
-            NoOp(--- Stav: ZAVŘENO ---);
-            Playback(tt-monkeys);
-            Hangup();
+            catch closed {
+                NoOp(--- ZAVRENO: Voicemail ---);
+                Playback(tt-monkeys);
+                VoiceMail(101@default,u);
+                Hangup();
+            }
         }
     }
 }

@@ -12,10 +12,14 @@ V moderních VoIP systémech je časové směrování základní funkcí pro ř�
 
 ## 3. Podrobný popis konfigurace a srovnání jazyků
 
-### Implementovaná logika (Pracovní doba: Po–Pá 08:00–16:00)
-- **Vyzvánění na linku 200** $\rightarrow$ kontrola času.
-- **OTEVŘENO:** Hovor směrován na recepci (`PJSIP/101`).
-- **ZAVŘENO:** Přehrání zvuku `tt-monkeys` a zavěšení (`Hangup`).
+### Implementovaná logika (Extra snaha nad rámec zadání)
+Ačkoliv byla přidělenou variantou pouze kontrola času, **projekt byl v rámci iniciativy a snahy o komplexní řešení rozšířen o všechny navrhované funkce tématu #10** (čas, fronta i hlasová schránka). Byl vytvořen plnohodnotný scénář pro firemní ústřednu:
+
+1. **Časové směrování (`GotoIfTime` / `ifTime`):** Kontrola pracovní doby (Po–Pá 08:00–16:00).
+2. **Logika fronty (`Queue`):** Ve stavu OTEVŘENO nevoláme linku přímo, ale hovor je zařazen do vyzváněcí fronty (`recepce_fronta` se strategií `ringall`) na 30 vteřin.
+3. **Napojení na Voicemail:** Pokud je ZAVŘENO, nebo pokud frontu do 30 vteřin nikdo nezvedne, přehraje se omluvná hláška (`tt-monkeys`) a hovor je přesměrován do hlasové schránky (`VoiceMail`).
+
+Tento komplexní scénář byl úspěšně implementován a otestován ve všech třech dialplánových jazycích.
 
 ### Srovnání syntaxe
 
